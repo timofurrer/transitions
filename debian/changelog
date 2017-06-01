@@ -1,0 +1,5 @@
+transitions (0.5.3~alpha1) unstable; urgency=low
+
+  * Initial debian package release
+
+ -- Timo Furrer <timo.furrer@roche.com>  Thu, 01 Jun 2017 14:02:05 +0200

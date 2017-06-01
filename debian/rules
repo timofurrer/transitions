@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export PYBUILD_NAME = transitions
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+
+override_dh_auto_test:
+	@echo I dunno need no tests

@@ -1,0 +1,19 @@
+Source: transitions
+Section: python
+Priority: optional
+Maintainer: Timo Furrer <timo.furrer@roche.com>
+Build-Depends: debhelper (>= 9), dh-python,
+ python, python3, python-setuptools, python3-setuptools
+Standards-Version: 3.9.8
+
+Package: python-transitions
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}
+Description: A lightweight, object-oriented finite state machine implementation in Python
+ Mirror from GitHub https://github.com/tyarkoni/transitions
+
+Package: python3-transitions
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}
+Description: A lightweight, object-oriented finite state machine implementation in Python
+ Mirror from GitHub https://github.com/tyarkoni/transitions
