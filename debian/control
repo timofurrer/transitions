@@ -8,12 +8,12 @@ Standards-Version: 3.9.8
 
 Package: python-transitions
 Architecture: all
-Depends: ${python:Depends}, ${misc:Depends}
+Depends: ${python:Depends}, ${misc:Depends}, python-pygraphviz, graphviz
 Description: A lightweight, object-oriented finite state machine implementation in Python
  Mirror from GitHub https://github.com/tyarkoni/transitions
 
 Package: python3-transitions
 Architecture: all
-Depends: ${python3:Depends}, ${misc:Depends}
+Depends: ${python3:Depends}, ${misc:Depends}, python3-pygraphviz, graphviz
 Description: A lightweight, object-oriented finite state machine implementation in Python
  Mirror from GitHub https://github.com/tyarkoni/transitions
