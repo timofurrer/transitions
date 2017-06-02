@@ -2,7 +2,7 @@ Source: transitions
 Section: python
 Priority: optional
 Maintainer: Timo Furrer <timo.furrer@roche.com>
-Build-Depends: debhelper (>= 9), dh-python,
+Build-Depends: debhelper (>= 9), dh-python, git,
  python, python3, python-setuptools, python3-setuptools
 Standards-Version: 3.9.8
 
