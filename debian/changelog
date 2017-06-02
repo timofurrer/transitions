@@ -1,3 +1,9 @@
+transitions (0.5.3-1) unstable; urgency=medium
+
+  * change to git source format
+
+ -- Timo Furrer <timo.furrer@roche.com>  Fri, 02 Jun 2017 18:38:04 +0200
+
 transitions (0.5.3) unstable; urgency=low
 
   * Initial debian package release
