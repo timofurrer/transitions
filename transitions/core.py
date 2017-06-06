@@ -10,6 +10,7 @@ import logging
 from collections import OrderedDict
 from collections import defaultdict
 from collections import deque
+from threading import RLock
 from functools import partial
 from six import string_types
 
@@ -404,6 +405,7 @@ class Machine(object):
         # initialize protected attributes first
         self._queued = queued
         self._transition_queue = deque()
+        self._transition_queue_lock = RLock()
         self._before_state_change = []
         self._after_state_change = []
         self._prepare_event = []
@@ -842,19 +844,25 @@ class Machine(object):
                 raise MachineError("Attempt to process events synchronously while transition queue is not empty!")
 
         # process queued events
-        self._transition_queue.append(trigger)
-        # another entry in the queue implies a running transition; skip immediate execution
-        if len(self._transition_queue) > 1:
-            return True
+        with self._transition_queue_lock:
+            self._transition_queue.append(trigger)
+            # another entry in the queue implies a running transition; skip immediate execution
+            if len(self._transition_queue) > 1:
+                return True
 
         # execute as long as transition queue is not empty
         while self._transition_queue:
             try:
-                self._transition_queue[0]()
-                self._transition_queue.popleft()
+                transition_event = self._transition_queue[0]
+                # call transition event
+                transition_event()
+
+                with self._transition_queue_lock:
+                    self._transition_queue.popleft()
             except Exception:
                 # if a transition raises an exception, clear queue and delegate exception handling
-                self._transition_queue.clear()
+                with self._transition_queue_lock:
+                    self._transition_queue.clear()
                 raise
         return True
 
